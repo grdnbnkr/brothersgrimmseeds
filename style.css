@@ -158,3 +158,10 @@
     color: #fff;
   }
   
+  .disclaimer-text {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    text-align: justify;
+  }
+  

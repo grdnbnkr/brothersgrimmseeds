@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const productsGrid = document.querySelector('.products-grid');
 
   try {
-    const configResponse = await fetch('config.json');
+    const configResponse = await fetch('config/config.json');
     const config = await configResponse.json();
     const products = await loadProducts();
 

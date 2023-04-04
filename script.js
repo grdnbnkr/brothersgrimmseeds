@@ -49,8 +49,8 @@ async function loadProducts() {
   for (const line of lines) {
     if (!line.trim()) continue;
 
-    const [id, name, description, image_path] = line.split(',');
-    products.push({ id, name, description, image_path });
+    const [id, name, description, image_path, variant_id] = line.split(',');
+    products.push({ id, name, description, image_path, variant_id });
   }
 
   return products;
@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const productsGrid = document.querySelector('.products-grid');
 
   try {
+    const configResponse = await fetch('config.json');
+    const config = await configResponse.json();
     const products = await loadProducts();
 
     for (const product of products) {
@@ -73,6 +75,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     addToCartButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         const productId = event.target.dataset.productId;
+        const variantId = products.find(p => p.id === productId).variant_id;
+
+        // Use the store name from the configuration file
+        window.location.href = `https://${config.shopify_store_name}.myshopify.com/cart/${variantId}:1`;
+
         // Your Shopify add-to-cart logic goes here
         console.log(`Add to cart clicked for product ID: ${productId}`);
       });

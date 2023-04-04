@@ -29,6 +29,12 @@ function createProductCard(product) {
 // Function to load products from the CSV file
 async function loadProducts() {
   const response = await fetch('products.csv');
+
+  if (!response.ok || !response.headers.get('content-type').includes('text/csv')) {
+    console.error('Error: CSV file not found or not in the correct format.');
+    return [];
+  }
+
   const csvData = await response.text();
   const products = [];
 
@@ -44,6 +50,7 @@ async function loadProducts() {
 
   return products;
 }
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   const productsGrid = document.querySelector('.products-grid');

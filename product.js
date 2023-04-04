@@ -1,7 +1,7 @@
 const productId = new URLSearchParams(window.location.search).get("id");
 const productContainer = document.getElementById("product");
 
-fetch("products.csv")
+fetch("data/products.csv")
   .then((response) => response.text())
   .then((csvData) => {
     const products = parseCSV(csvData);

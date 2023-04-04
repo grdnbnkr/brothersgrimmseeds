@@ -28,7 +28,7 @@ function createProductCard(product) {
 
 // Function to load products from the CSV file
 async function loadProducts() {
-  const response = await fetch('products.csv');
+  const response = await fetch('data/products.csv');
 
   if (!response.ok || !response.headers.get('content-type').includes('text/csv')) {
     console.error('Error: CSV file not found or not in the correct format.');

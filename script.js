@@ -30,8 +30,13 @@ function createProductCard(product) {
 async function loadProducts() {
   const response = await fetch('data/products.csv');
 
-  if (!response.ok || !response.headers.get('content-type').includes('text/csv')) {
-    console.error('Error: CSV file not found or not in the correct format.');
+  // if (!response.ok || !response.headers.get('content-type').includes('text/csv')) {
+  //   console.error('Error: CSV file not found or not in the correct format.');
+  //   return [];
+  // }
+
+  if (!response.ok) {
+    throw new Error('Error: CSV file not found.');
     return [];
   }
 

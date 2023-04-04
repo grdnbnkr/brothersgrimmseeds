@@ -1,11 +1,45 @@
+// // Function to create a product card
+// function createProductCard(product) {
+//   const card = document.createElement('div');
+//   card.classList.add('product-card');
+
+//   const img = document.createElement('img');
+//   img.src = product.image_path;
+//   img.alt = product.name;
+
+//   const title = document.createElement('h2');
+//   title.textContent = product.name;
+
+//   const description = document.createElement('p');
+//   description.textContent = product.description;
+
+//   const addToCartButton = document.createElement('button');
+//   addToCartButton.classList.add('add-to-cart');
+//   addToCartButton.dataset.productId = product.id;
+//   addToCartButton.textContent = 'Add to Cart';
+
+//   card.appendChild(img);
+//   card.appendChild(title);
+//   card.appendChild(description);
+//   card.appendChild(addToCartButton);
+
+//   return card;
+// }
+
 // Function to create a product card
 function createProductCard(product) {
   const card = document.createElement('div');
   card.classList.add('product-card');
 
+  const productLink = document.createElement('a');
+  productLink.href = `product.html?id=${product.id}`;
+
   const img = document.createElement('img');
   img.src = product.image_path;
   img.alt = product.name;
+
+  productLink.appendChild(img);
+  card.appendChild(productLink);
 
   const title = document.createElement('h2');
   title.textContent = product.name;
@@ -18,13 +52,13 @@ function createProductCard(product) {
   addToCartButton.dataset.productId = product.id;
   addToCartButton.textContent = 'Add to Cart';
 
-  card.appendChild(img);
   card.appendChild(title);
   card.appendChild(description);
   card.appendChild(addToCartButton);
 
   return card;
 }
+
 
 // Function to load products from the CSV file
 async function loadProducts() {

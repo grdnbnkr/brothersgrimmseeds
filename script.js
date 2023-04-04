@@ -54,20 +54,25 @@ async function loadProducts() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   const productsGrid = document.querySelector('.products-grid');
-  const products = await loadProducts();
 
-  for (const product of products) {
-    const productCard = createProductCard(product);
-    productsGrid.appendChild(productCard);
-  }
+  try {
+    const products = await loadProducts();
 
-  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    for (const product of products) {
+      const productCard = createProductCard(product);
+      productsGrid.appendChild(productCard);
+    }
 
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      const productId = event.target.dataset.productId;
-      // Your Shopify add-to-cart logic goes here
-      console.log(`Add to cart clicked for product ID: ${productId}`);
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const productId = event.target.dataset.productId;
+        // Your Shopify add-to-cart logic goes here
+        console.log(`Add to cart clicked for product ID: ${productId}`);
+      });
     });
-  });
+  } catch (error) {
+    console.error(error.message);
+  }
 });

@@ -32,7 +32,8 @@ function createProductCard(product) {
   card.classList.add('product-card');
 
   const productLink = document.createElement('a');
-  productLink.href = `product.html?id=${product.id}`;
+  // productLink.href = `product.html?id=${product.id}`;
+  productLink.href = `#`; // TODO: Remove and link to product detail page when complete
 
   const img = document.createElement('img');
   img.src = product.image_path;
